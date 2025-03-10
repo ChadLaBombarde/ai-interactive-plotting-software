@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./styles.css">
+        <title>Interactive Background</title>
+    </head>  
+<body>
+    <div class="controls">
+        <input type="file" id="imageUpload" accept="image/*">
+        
+        <div class="customization-panel">
+            <select id="categorySelect">
+                <option value="waypoints">Waypoints</option>
+                <option value="landmarks">Ships</option>
+                <option value="danger">Danger Zones</option>
+                <option value="custom">Custom Category</option>
+                <button class="clear-button" onclick="clearMap()">Clear Map</button>
+            </select>
+            <div class="category-controls">
+                <button onclick="clearCategory('waypoints')">Clear Waypoints</button>
+                <button onclick="clearCategory('landmarks')">Clear Ships</button>
+                <button onclick="clearCategory('obstacles')">Clear Obstacles</button>
+            </div>
+            
+            <label>Size: <input type="range" id="shapeSize" min="10" max="50" value="20" class="size-input"></label>
+            <label>Color: <input type="color" id="shapeColor" value="#ff0000"></label>
+            <button onclick="addShape()">Add Shape</button>
+        </div>
+    
+        <div class="category-controls">
+            <input type="text" id="newCategoryName" placeholder="New Category Name">
+            <input type="color" id="newCategoryColor" value="#0000FF">
+            <button onclick="addCategory()">Create Category</button>
+        </div>
+    </div>
+    
+    <div class="plotting-area">
+        <div class="background-container">
+            <!-- Background image will be inserted here -->
+        </div>
+        
+        <div class="legend">
+            <strong>Categories:</strong><br>
+            <div id="categoryLegend"></div>
+        </div>
+    </div>
+    
+
+ <script src="./index.js"></script>
+</body>
+</html>
