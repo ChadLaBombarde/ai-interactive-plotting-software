@@ -34,7 +34,8 @@ class PlottingTool {
                 const img = document.createElement('img');
                 img.src = e.target.result;
                 img.className = 'background-image';
-                
+                img.draggable = false; // Prevent image from being draggable
+                img.style.userSelect = 'none'; // Prevent text/image selection
                 // Clear existing background
                 this.backgroundContainer.innerHTML = '';
                 this.backgroundContainer.appendChild(img);
@@ -64,10 +65,13 @@ class PlottingTool {
         
         // Make shape draggable
         shape.addEventListener('mousedown', (e) => {
+            e.preventDefault(); // Prevent default browser behavior (e.g., image drag)
+            e.stopPropagation(); // Stop event from bubbling to image/container
             this.isDragging = true;
             this.draggedShape = shape;
-            this.offsetX = e.clientX - x;
-            this.offsetY = e.clientY - y;
+            const rect = shape.getBoundingClientRect();
+            this.offsetX = e.clientX - rect.left; // Offset from shape's left edge
+            this.offsetY = e.clientY - rect.top;  // Offset from shape's top edge
         });
     }
 

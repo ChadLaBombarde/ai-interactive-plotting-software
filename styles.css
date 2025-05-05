@@ -17,13 +17,24 @@
     height: 100%;
     object-fit: cover;
 }
-
+/*
 .shape {
     position: absolute;
     cursor: move;
     transform: translate(-50%, -50%);
     transition: all 0.2s ease;
 }
+    */
+    
+
+.shape {
+    position: absolute; /* Ensure shapes are positioned above the image */
+    cursor: move; /* Indicate draggability */
+    pointer-events: auto; /* Allow mouse events on shapes */
+    border-radius: 50%;
+    transition: all 0.0s ease;
+}
+
 
 .controls {
     text-align: center;
