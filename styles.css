@@ -2,10 +2,13 @@
     position: relative;
     width: 800px;
     height: 600px;
-    border: 2px solid #ccc;
+    border: 2px solid rgb(219, 112, 5);
     margin: 20px auto;
+    
 }
-
+.color{
+    background-color: rgb(41, 68, 59);
+}
 .background-container {
     position: absolute;
     width: 100%;
@@ -34,6 +37,12 @@
     border-radius: 50%;
     transition: all 0.0s ease;
 }
+.shape-btn{
+    border-radius: 10%;
+    border-color: rgb(219, 112, 5);;
+    background-color: black;
+    color: rgb(219, 112, 5);;
+}
 
 
 .controls {
@@ -51,7 +60,8 @@
 
 .size-input {
     width: 60px;
-}
+};
+
 
 .category-controls {
     margin-top: 10px;
@@ -59,11 +69,24 @@
     gap: 10px;
     justify-content: center;
 }
+.header-title{
+    color: rgb(219, 112, 5);
+}
+.keytechcorps{
+    color: rgb(219, 112, 5);
+}
+.label-color-color{
+    color: rgb(219, 112, 5);
+}
+.label-size-color{
+    color: rgb(219, 112, 5);
+}
 
 .legend {
     width: fit-content;
     margin: 10px auto; /* Center the legend below the plotting area */
-    background: white;
+    background: rgb(41, 68, 59);
+    color: rgb(219, 112, 5);
     padding: 8px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
