@@ -24,7 +24,13 @@ class PlottingTool {
         // Enable drag and drop for shapes
         document.addEventListener('mousemove', (e) => this.handleDrag(e));
         document.addEventListener('mouseup', () => this.isDragging = false);
+
+        // Touch events
+        document.addEventListener('touchmove', (e) => this.handleTouchDrag(e), { passive: false });
+        document.addEventListener('touchend', () => this.stopDragging());
+        document.addEventListener('touchcancel', () => this.stopDragging());
     }
+    
 
     handleImageUpload(event) {
         const file = event.target.files[0];
@@ -73,6 +79,26 @@ class PlottingTool {
             this.offsetX = e.clientX - rect.left; // Offset from shape's left edge
             this.offsetY = e.clientY - rect.top;  // Offset from shape's top edge
         });
+        // Touch drag
+        shape.addEventListener('touchstart', (e) => { // Added: Initiate dragging on touch start
+            e.preventDefault(); // Added: Prevent default touch behavior (e.g., scrolling)
+            e.stopPropagation(); // Added: Stop event bubbling
+            const touch = e.touches[0]; // Added: Get the first touch point
+            this.startDragging(shape, touch.clientX, touch.clientY); // Added: Start dragging with touch coordinates
+        }, { passive: false }); // Added: Ensure preventDefault works for touch events
+    
+    }
+    startDragging(shape, clientX, clientY) { // Modified: Extracted dragging logic to reusable method for mouse and touch
+        this.isDragging = true;
+        this.draggedShape = shape;
+        const rect = shape.getBoundingClientRect();
+        this.offsetX = clientX - rect.left;
+        this.offsetY = clientY - rect.top;
+    }
+
+    stopDragging() { // Modified: Extracted stop logic to reusable method for mouse and touch
+        this.isDragging = false;
+        this.draggedShape = null;
     }
 
     handleDrag(e) {
@@ -88,6 +114,21 @@ class PlottingTool {
 
         this.draggedShape.style.left = `${x}px`;
         this.draggedShape.style.top = `${y}px`;
+    }
+    handleTouchDrag(e) { // Added: Handle touch dragging
+        if (!this.isDragging || !this.draggedShape) return;
+        
+        e.preventDefault(); // Added: Prevent default touch behavior
+        const touch = e.touches[0]; // Added: Get the current touch point
+        const rect = this.backgroundContainer.getBoundingClientRect();
+        let x = touch.clientX - rect.left - this.offsetX; // Added: Calculate shape position using touch coordinates
+        let y = touch.clientY - rect.top - this.offsetY; // Added: Calculate shape position using touch coordinates
+
+        x = Math.max(0, Math.min(x, rect.width)); // Added: Constrain within bounds
+        y = Math.max(0, Math.min(y, rect.height)); // Added: Constrain within bounds
+
+        this.draggedShape.style.left = `${x}px`; // Added: Update shape position
+        this.draggedShape.style.top = `${y}px`; // Added: Update shape position
     }
 
     addCategory() {

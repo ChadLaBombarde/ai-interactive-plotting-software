@@ -4,7 +4,8 @@
     height: 600px;
     border: 2px solid rgb(219, 112, 5);
     margin: 20px auto;
-    
+    max-width: 90vw; /* Added: Ensure plotting area is responsive on mobile */
+    max-height: 80vh; /* Added: Limit height on smaller screens */
 }
 .color{
     background-color: rgb(41, 68, 59);
@@ -36,6 +37,7 @@
     pointer-events: auto; /* Allow mouse events on shapes */
     border-radius: 50%;
     transition: all 0.0s ease;
+    touch-action: none; /* Added: Prevent default touch behaviors (e.g., scrolling) during drag */
 }
 .shape-btn{
     border-radius: 10%;
