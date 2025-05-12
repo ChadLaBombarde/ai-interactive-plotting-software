@@ -9,7 +9,7 @@
 <body class="color">
     <div class="controls">
         <h1 class="header-title">Plotting Room</h1>
-        <h4 class="keytechcorps">keytechcorps&copy;2025</h4>
+        <h4 class="keytechcorps">keytechcorps©2025</h4>
         <div class="legend">
             <strong>Categories:</strong><br>
             <div id="categoryLegend"></div>
@@ -17,41 +17,34 @@
         <input type="file" id="imageUpload" accept="image/*">
         
         <div class="customization-panel">
-            <select id="categorySelect">   //Optional Dropdown Section//
+            <!-- Modified: Updated category select to only include three categories -->
+            <select id="categorySelect">
                 <option value="waypoints">Waypoints</option>
-                <option value="landmarks">Ships</option>
-                <option value="danger">Danger Zones</option>
-                <option value="custom">Custom Category</option>
-                <button class="clear-button" onclick="clearMap()">Clear Map</button>
+                <option value="ships">Ships</option>
+                <option value="danger">Danger</option>
             </select>
         
+            <button class="shape-btn" onclick="addShape()">Add Shape</button>
+            <label class="label-size-color">Size: <input type="range" id="shapeSize" min="10" max="50" value="20" class="size-input"></label>
+            <!-- Removed: Color picker input as colors are now fixed per category -->
             
-        <button class="shape-btn" onclick="addShape()">Add Shape</button>
-        <label class="label-size-color">Size: <input type="range" id="shapeSize" min="10" max="50" value="20" class="size-input"></label>
-        <label  class="label-color-color">Color: <input type="color" id="shapeColor" value="#ff0000"></label>
+            <!-- Modified: Updated clear buttons to match new categories and fixed onclick to use correct category names -->
             <div class="category-controls">
                 <button class="shape-btn" onclick="clearCategory('waypoints')">Clear Waypoints</button>
-                <button class="shape-btn" onclick="clearCategory('landmarks')">Clear Ships</button>
-                <button class="shape-btn" onclick="clearCategory('obstacles')">Clear Obstacles</button>
+                <button class="shape-btn" onclick="clearCategory('ships')">Clear Ships</button>
+                <button class="shape-btn" onclick="clearCategory('danger')">Clear Danger</button>
             </div>
-            
         </div>
     
-        <div class="category-controls">
-            <input type="text" id="newCategoryName" placeholder="New Category Name">
-            <input type="color" id="newCategoryColor" value="#0000FF">
-            <button class="shape-btn" onclick="addCategory()">Create Category</button>
-        </div>
+        <!-- Removed: Category creation controls (input fields and create button) -->
     </div>
     
     <div class="plotting-area">
         <div class="background-container">
             <!-- Background image will be inserted here -->
         </div>
-        
     </div>
-    <p class="footer" >design build by Chad LaBombarde 2025</p>
-    
+    <p class="footer">design build by Chad LaBombarde 2025</p>
     
 
  <script src="./index.js"></script>
